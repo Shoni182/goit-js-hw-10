@@ -1,0 +1,21 @@
+.flatpickr-calendar {
+  background: rgba(255, 255, 255, 0.4) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Трохи білий при наведенні */
+.flatpickr-time input:hover {
+  background: rgba(255, 255, 255, 0.412) !important;
+}
+
+/* Трохи білий при фокусі */
+.flatpickr-time input:focus {
+  background: rgba(255, 255, 255, 0.394) !important;
+  outline: none !important;
+}
+/* Прозорі бордери */
+.flatpickr-time .numInputWrapper {
+  background: transparent !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}

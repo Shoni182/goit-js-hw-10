@@ -1,3 +1,6 @@
+* {
+  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+}
 body {
   background-color: rgb(180, 215, 227);
 }
@@ -14,8 +17,9 @@ body {
   font-size: 18px;
   line-height: 150%;
   letter-spacing: 0.04em;
-  color: #2e2f42;
+  // color: #2e2f42;
   margin-bottom: 20px;
+  background-color: #ffffffc4;
 }
 
 .timer-container {
@@ -36,14 +40,14 @@ body {
   align-items: center;
 }
 .value {
-  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  // font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   font-size: 64px; // великі цифри
   font-weight: 400;
-  color: #000;
+  color: #211e2af3;
   line-height: 1;
 }
 .label {
-  font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+  // font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
   font-size: 0.9rem; // менші букви під цифрами
   font-weight: 500;
   letter-spacing: 1px;
@@ -52,4 +56,21 @@ body {
   text-transform: uppercase;
 }
 
-// - interactive bgm
+//: input and button
+
+.btn[data-start='disable'] {
+  background-color: #cccccc5d;
+  color: #777;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn[data-start='enable'] {
+  // border: 2px solid rgb(92, 255, 114);
+}
+
+.timer-input[data-active='disable'] {
+  background-color: #ffffff2b;
+  cursor: not-allowed;
+  pointer-events: none;
+}

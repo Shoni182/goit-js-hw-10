@@ -6,4 +6,7 @@
 @use './pages/snackbar';
 // Library style
 @import 'flatpickr/dist/flatpickr.min.css';
+@import '/scss/libs/flatpickr-custom';
+
 @import 'izitoast/dist/css/iziToast.min.css';
+@import '/scss/libs/iziToast-custom';
