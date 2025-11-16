@@ -4,12 +4,12 @@
   -webkit-backdrop-filter: blur(8px);
 }
 
-/* Трохи білий при наведенні */
+/* ховер */
 .flatpickr-time input:hover {
   background: rgba(255, 255, 255, 0.412) !important;
 }
 
-/* Трохи білий при фокусі */
+/* фокус */
 .flatpickr-time input:focus {
   background: rgba(255, 255, 255, 0.394) !important;
   outline: none !important;
