@@ -1,21 +1,20 @@
 import iziToast from 'izitoast';
 
-// : Пошук DOM
+//: ======== Пошук DOM ========
 
 const refs = {
   form: document.querySelector('.form'),
   input: document.querySelector('label[name="delay"]'),
   radioFullfiled: document.querySelector('input[value="fulfilled"]'),
-  radioRejected: document.querySelector('input[value="rejected"]'),
-  // radio: document.querySelector('input[type="radio"]'),
-  notifBtn: document.querySelector('.form button'),
+  // radioRejected: document.querySelector('input[value="rejected"]'),
+  // notifBtn: document.querySelector('.form button'),
 };
 
-// ! дестриктуризація
+//: ======== дестриктуризація ========
 
-const { form, input, radioFullfiled, radioRejected, notifBtn } = refs;
+const { form, radioFullfiled } = refs;
 
-//! даннзі з інпуту Delay(ms)
+//: ======== даннзі з інпуту Delay(ms) ========
 let delay;
 
 form.addEventListener('input', () => {
@@ -23,7 +22,7 @@ form.addEventListener('input', () => {
   delay = data.get('delay');
 });
 
-//! створення логіки таймеру та кнопок
+//:======== створення промісу ========
 
 form.addEventListener('submit', evt => {
   evt.preventDefault();
@@ -44,20 +43,27 @@ form.addEventListener('submit', evt => {
   promise
     .then(value => {
       iziToast.show({
-        title: 'Hey',
+        // title: 'Hey',
+        messageSize: '20',
         message: `✅ Fulfilled promise in ${delay}ms`,
         position: 'center',
         close: true,
         closeOnEscape: true,
+        theme: 'light',
+        color: 'green',
       });
     })
     .catch(value => {
       iziToast.show({
-        title: 'Hey',
+        // title: 'Hey',
+        messageSize: '20',
         message: `❌ Rejected promise in ${delay}ms`,
         position: 'center',
         close: true,
         closeOnEscape: true,
+        theme: 'light',
+        color: 'red',
       });
     });
+  form.reset();
 });

@@ -2,7 +2,6 @@ import flatpickr from 'flatpickr';
 import iziToast from 'izitoast';
 
 // Завдання
-
 // #region Task
 // - Стилізація
 
@@ -38,7 +37,7 @@ import iziToast from 'izitoast';
 
 // #endregion
 
-//!  ======== Пошук ДОМ елементів ========
+//:  ======== Пошук ДОМ елементів ========
 
 const refs = {
   startBtn: document.querySelector('button[data-start]'),
@@ -51,11 +50,11 @@ const refs = {
   seconds: document.querySelector('.value[data-seconds]'),
 };
 
-//! - ======== button settings ========
+//: - ======== button settings ========
 
 refs.startBtn.dataset.start = 'disable';
 
-//! - ======== data pick ========
+//: - ======== data pick ========
 // записати сюди дату
 let currentTime;
 let userSelectedDate = null;
@@ -66,13 +65,9 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    // console.log(selectedDates[0]);
     currentTime = new Date();
-
     if (selectedDates[0] > currentTime) {
-      // console.log('Option - true ');
       refs.startBtn.dataset.start = 'enable';
-
       userSelectedDate = selectedDates[0];
     } else {
       console.log('Option - false ');
@@ -80,14 +75,16 @@ const options = {
 
       iziToast.show({
         title: 'Hey',
+        messageSize: '20',
         message: `Please choose a date in the future! for exapmle ${new Date(
           Date.now() + 76000000
         ).toLocaleString('uk-UA')}`,
         position: 'center',
         close: true,
         closeOnEscape: true,
+        theme: 'light',
+        color: 'red',
       });
-      // console.log('false');
     }
   },
 };
@@ -95,7 +92,7 @@ const options = {
 // lib init
 flatpickr('#datetime-picker', options);
 
-//! - ======== timer ========
+//: - ======== timer ========
 
 const timer = {
   isActive: false,
@@ -134,11 +131,11 @@ const timer = {
   },
 };
 
-//! - ======== init ========
+//: - ======== init ========
 
 refs.startBtn.addEventListener('click', () => timer.start());
 
-//! - ======== Функція преведеннчя мс ========
+//: - ======== Функція преведеннчя мс ========
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
