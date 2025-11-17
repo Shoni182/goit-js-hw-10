@@ -5,22 +5,24 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <title>Snackbar</title>
   <script type="module" crossorigin src="/goit-js-hw-10/2-snackbar.js"></script>
   <link rel="modulepreload" crossorigin href="/goit-js-hw-10/assets/vendor-8AtNpez9.js">
-  <link rel="modulepreload" crossorigin href="/goit-js-hw-10/assets/main-DOj0XK94.js">
-  <link rel="stylesheet" crossorigin href="/goit-js-hw-10/assets/main-ocFnILYn.css">
+  <link rel="modulepreload" crossorigin href="/goit-js-hw-10/assets/main-AYBTQ8Im.js">
+  <link rel="stylesheet" crossorigin href="/goit-js-hw-10/assets/main-BUKE26cT.css">
 </head>
 
 <body>
     <canvas id="granim-canvas"></canvas>
-
+    <ul class="btn-list">
+        <li><a class="link-btn" href="index.html">Home</a></li>
+    </ul>
     <form class="form">
         <label>
             Delay (ms)
             <input type="number" name="delay" required class="form-input" />
         </label>
-
         <fieldset class="fieldset">
             <legend>State</legend>
             <label>
@@ -32,8 +34,7 @@
                 Rejected
             </label>
         </fieldset>
-
-        <button type="submit">Create notification</button>
+        <button class="btn" type="submit">Create notification</button>
     </form>
 
 </body>
