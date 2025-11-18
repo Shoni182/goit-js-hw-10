@@ -37,12 +37,12 @@ import iziToast from 'izitoast';
 
 // #endregion
 
-//:  ======== Пошук ДОМ елементів ========
+// //:  ======== Пошук ДОМ елементів ========
 
 const refs = {
   startBtn: document.querySelector('button[data-start]'),
   input: document.querySelector('#datetime-picker[data-active]'),
-  clockFace: document.querySelector('.value'),
+  clockFace: document.querySelectorAll('.value'),
 
   days: document.querySelector('.value[data-days]'),
   hours: document.querySelector('.value[data-hours]'),
@@ -50,9 +50,11 @@ const refs = {
   seconds: document.querySelector('.value[data-seconds]'),
 };
 
+const { startBtn, input, clockFace, days, hours, minutes, seconds } = refs;
+
 //: - ======== button settings ========
 
-refs.startBtn.dataset.start = 'disable';
+startBtn.dataset.start = 'disable';
 
 //: - ======== data pick ========
 // записати сюди дату
@@ -67,11 +69,11 @@ const options = {
   onClose(selectedDates) {
     currentTime = new Date();
     if (selectedDates[0] > currentTime) {
-      refs.startBtn.dataset.start = 'enable';
+      startBtn.dataset.start = 'enable';
       userSelectedDate = selectedDates[0];
     } else {
       console.log('Option - false ');
-      refs.startBtn.dataset.start = 'disable';
+      startBtn.dataset.start = 'disable';
 
       iziToast.show({
         title: 'Hey',
@@ -101,8 +103,8 @@ const timer = {
   start() {
     if (this.isActive) return;
     this.isActive = true;
-    refs.input.dataset.active = 'disable';
-    refs.startBtn.dataset.start = 'disable';
+    input.dataset.active = 'disable';
+    startBtn.dataset.start = 'disable';
 
     this.intervalId = setInterval(() => {
       currentTime = new Date();
@@ -110,12 +112,12 @@ const timer = {
       const result = convertMs(diffMS);
       console.log(result);
 
-      refs.days.textContent = result.days;
-      refs.hours.textContent = result.hours;
-      refs.minutes.textContent = result.minutes;
-      refs.seconds.textContent = result.seconds;
+      days.textContent = result.days;
+      hours.textContent = result.hours;
+      minutes.textContent = result.minutes;
+      seconds.textContent = result.seconds;
 
-      if (diffMS <= 0) {
+      if ([...clockFace].every(time => time.textContent.trim() === '00')) {
         this.stop();
       }
     }, 1000);
@@ -124,16 +126,14 @@ const timer = {
   stop() {
     if (!this.isActive) return;
     this.isActive = false;
-    // console.log('STOP TIMER');
     clearInterval(this.intervalId);
-    refs.clockFace.textContent = '00:00:00:00';
-    refs.input.dataset.active = 'disable';
+    input.dataset.active = 'enable';
   },
 };
 
 //: - ======== init ========
 
-refs.startBtn.addEventListener('click', () => timer.start());
+startBtn.addEventListener('click', () => timer.start());
 
 //: - ======== Функція преведеннчя мс ========
 
