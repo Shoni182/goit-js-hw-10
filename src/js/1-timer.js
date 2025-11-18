@@ -49,7 +49,7 @@ const refs = {
   minutes: document.querySelector('.value[data-minutes]'),
   seconds: document.querySelector('.value[data-seconds]'),
 };
-
+// додано дестркутуризацію
 const { startBtn, input, clockFace, days, hours, minutes, seconds } = refs;
 
 //: - ======== button settings ========
@@ -117,6 +117,7 @@ const timer = {
       minutes.textContent = result.minutes;
       seconds.textContent = result.seconds;
 
+      // перетворення в масив та перевірка чи всі значення відповідають "00"
       if ([...clockFace].every(time => time.textContent.trim() === '00')) {
         this.stop();
       }
@@ -127,6 +128,7 @@ const timer = {
     if (!this.isActive) return;
     this.isActive = false;
     clearInterval(this.intervalId);
+    // disable => enable . забув замінити :)
     input.dataset.active = 'enable';
   },
 };

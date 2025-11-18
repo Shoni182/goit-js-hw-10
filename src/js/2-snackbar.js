@@ -4,48 +4,47 @@ import iziToast from 'izitoast';
 
 const refs = {
   form: document.querySelector('.form'),
-  input: document.querySelector('label[name="delay"]'),
   radioFullfiled: document.querySelector('input[value="fulfilled"]'),
-  // radioRejected: document.querySelector('input[value="rejected"]'),
-  // notifBtn: document.querySelector('.form button'),
 };
 
 //: ======== дестриктуризація ========
 
 const { form, radioFullfiled } = refs;
 
-//: ======== даннзі з інпуту Delay(ms) ========
-let delay;
-
-form.addEventListener('input', () => {
-  let data = new FormData(form);
-  delay = data.get('delay');
-});
-
 //:======== створення промісу ========
+
+// функція винесена за межі сабміту
+function createPromise(isChecked, delay) {
+  const promise = new Promise((res, rej) => {
+    setTimeout(() => {
+      if (isChecked) {
+        res(delay); // передане значення затримки
+      } else {
+        rej(delay);
+      }
+    }, delay);
+  });
+  return promise;
+}
+
+//:======== обробка ========
 
 form.addEventListener('submit', evt => {
   evt.preventDefault();
+
+  const data = new FormData(form);
+  const delay = data.get('delay');
+
   const isChecked = radioFullfiled.checked;
+
   const promise = createPromise(isChecked, delay);
-  function createPromise(isChecked, delay) {
-    const promise = new Promise((res, rej) => {
-      setTimeout(() => {
-        if (isChecked) {
-          res();
-        } else {
-          rej();
-        }
-      }, delay);
-    });
-    return promise;
-  }
+
   promise
     .then(value => {
       iziToast.show({
-        // title: 'Hey',
         messageSize: '20',
-        message: `✅ Fulfilled promise in ${delay}ms`,
+        // значення затримки передається до повідомення
+        message: `✅ Fulfilled promise in ${value}ms`,
         position: 'center',
         close: true,
         closeOnEscape: true,
@@ -55,9 +54,8 @@ form.addEventListener('submit', evt => {
     })
     .catch(value => {
       iziToast.show({
-        // title: 'Hey',
         messageSize: '20',
-        message: `❌ Rejected promise in ${delay}ms`,
+        message: `❌ Rejected promise in ${value}ms`,
         position: 'center',
         close: true,
         closeOnEscape: true,
